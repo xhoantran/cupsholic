@@ -4,6 +4,7 @@ from apiauth.models import CustomUser
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='category-image/', blank=True)
 
     def __str__(self):
         return self.name
@@ -53,7 +54,7 @@ class Product(models.Model):
     trending = models.BooleanField(default=False)
     sale = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = models.ImageField(upload_to="image/")
+    image = models.ImageField(upload_to="product-image/")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
