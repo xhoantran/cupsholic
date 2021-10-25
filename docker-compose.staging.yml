@@ -47,7 +47,7 @@ services:
 
   # Nginx
   nginx:
-    build: ./docker_compose/nginx/development
+    build: ./docker_compose/nginx/development/Dockerfile
     ports:
       - 80:8080
     depends_on:
