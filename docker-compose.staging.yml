@@ -1,0 +1,78 @@
+version: "3.8"
+services:
+  # Postgres Database
+  postgres:
+    container_name: cupsholic_dev_postgres_server
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    env_file:
+      - .env.staging
+
+  # React
+  frontend:
+    container_name: cupsholic_dev_react_server
+    build:
+      context: .
+      dockerfile: ./docker_compose/node/development/Dockerfile
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/frontend
+    command: yarn dev
+
+  # Django App
+  backend:
+    container_name: cupsholic_dev_django_server
+    build:
+      context: .
+      dockerfile: ./docker_compose/django/development/Dockerfile
+    expose:
+      - "8000"
+    env_file:
+      - .env.staging
+    volumes:
+      - ./backend:/backend
+      - media_volume:/backend/mediafiles
+    command: /start.sh
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  # Nginx
+  nginx:
+    build: ./docker_compose/nginx/development
+    ports:
+      - 80:8080
+    depends_on:
+      - backend
+    volumes:
+      - media_volume:/backend/mediafiles
+
+  # celery:
+  #   <<: *app
+  #   container_name: celery
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   ports: []
+  #   command: /start-celery
+
+  # celerybeat:
+  #   <<: *app
+  #   container_name: celerybeat
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   ports: []
+  #   command: /start-celerybeat
+
+volumes:
+  postgres_data_dev:
+  media_volume:

@@ -1,0 +1,88 @@
+version: "3.8"
+services:
+  postgres:
+    container_name: cupsholic_postgres_server
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data_production:/var/lib/postgresql/data
+    env_file:
+      - .env.production
+
+  backend:
+    container_name: cupsholic_django_server
+    build:
+      context: .
+      dockerfile: ./docker_compose/django/production/Dockerfile
+    expose:
+      - 8000
+    env_file:
+      - .env.production
+    volumes:
+      - ./backend:/backend
+    command: /start.sh
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  # React
+  frontend:
+    container_name: cupsholic_dev_next_server
+    build:
+      context: .
+      dockerfile: ./docker_compose/node/production/Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/frontend
+      - frontend_build:/frontend/build
+    command: next dev
+
+  nginx:
+    build:
+      dockerfile: ./docker_compose/nginx/production/Dockerfile
+    ports:
+      - 80:8080
+    depends_on:
+      - backend
+      - frontend
+    volumes:
+      - media_volume:/backend/mediafiles
+      - frontend_build:/var/www/frontend
+
+  # Postgres Admin
+  # pgadmin:
+  #   container_name: cupsholic_pgadmin_server
+  #   image: dpage/pgadmin4
+  #   restart: always
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: xhoantran@gmail.com
+  #     PGADMIN_DEFAULT_PASSWORD: Orlando123!
+  #   ports:
+  #     - "5050:80"
+
+  # celery:
+  #   <<: *app
+  #   container_name: celery
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   ports: []
+  #   command: /start-celery
+
+  # celerybeat:
+  #   <<: *app
+  #   container_name: celerybeat
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   ports: []
+  #   command: /start-celerybeat
+
+volumes:
+  postgres_data_production:
+  frontend_build:
+  media_volume:
