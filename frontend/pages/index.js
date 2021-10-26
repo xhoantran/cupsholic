@@ -1,8 +1,11 @@
 import Head from "next/head";
-import Wrapper from "../components/Layout/Wrapper";
-import Subheader from "../components/Layout/Subheader";
-import Header from "../components/Layout/Header";
+
 import Footer from "../components/Layout/Footer";
+import Header from "../components/Layout/Header";
+import Subheader from "../components/Layout/Subheader";
+import Wrapper from "../components/Layout/Wrapper";
+import ContentContainer from "../components/Content/Container";
+import Attract from "../components/Content/Attract";
 
 export default function Home() {
   return (
@@ -15,20 +18,9 @@ export default function Home() {
       <Wrapper>
         <Subheader />
         <Header />
-        <div>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste
-          sapiente aperiam, magnam blanditiis sequi accusamus! Fuga pariatur,
-          ducimus nulla, reprehenderit voluptatem iure blanditiis sit soluta
-          sapiente facere neque dolores aperiam optio aliquid, aliquam modi
-          animi enim. Vitae quidem amet in sint animi similique voluptate,
-          voluptatum eos. Non laborum dolore eos accusantium sit provident
-          possimus pariatur tenetur exercitationem perspiciatis reiciendis
-          facere veritatis placeat facilis repellendus, nam natus magni totam
-          quidem esse voluptatum quas. Ratione, velit eveniet eos maiores
-          quisquam assumenda quia explicabo dolores consequatur quis magni
-          numquam aperiam, esse error beatae, optio sit non inventore incidunt
-          accusantium cupiditate eum! Veritatis, doloremque!
-        </div>
+        <ContentContainer>
+          <Attract />
+        </ContentContainer>
         <Footer />
       </Wrapper>
     </>

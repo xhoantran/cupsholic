@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Roboto:wght@100;300;400;500;700&display=swap");
 
 html,
 body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -15,4 +16,32 @@ a {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.transition-cubic-bezier {
+  transition: all 0.25s cubic-bezier(0.104, 0.204, 0.492, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.thb-full-menu,
+.subheader,
+.wp-block-latest-posts.is-grid a,
+.wp-block-button__link,
+.btn,
+.button {
+  font-weight: 400;
+  font-family: Jost;
+  text-rendering: optimizeLegibility;
+}
+
+p {
+  margin-bottom: 1rem;
+  font-size: inherit;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
 }

@@ -1,10 +1,11 @@
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { BPLarge, BPSmall } from "../BreakPoint";
-import SearchIcon from "../Icon/Search";
-import BagIcon from "../Icon/Bag";
-import UserIcon from "../Icon/User";
 import ArrowDownIcon from "../Icon/ArrowDown";
-import { useRouter } from "next/router";
+import BagIcon from "../Icon/Bag";
+import SearchIcon from "../Icon/Search";
+import UserIcon from "../Icon/User";
 
 const HeaderWrapper = styled.div`
   height: 65px;
@@ -21,6 +22,25 @@ const HeaderContainer = styled.header`
   user-select: none;
   background: #fff;
   border-bottom: 1px solid #000;
+
+  &.fixed {
+    position: fixed;
+    z-index: 40;
+  }
+
+  &.fixed::before {
+    box-shadow: 0 0 0 6px rgb(0 0 0 / 5%);
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 1;
+    pointer-events: none;
+  }
 `;
 const HeaderRow = styled.div`
   width: 100%;
@@ -185,10 +205,29 @@ const ShopLetterAnimate = styled.div`
 
 const Header = () => {
   const { asPath } = useRouter();
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <HeaderWrapper>
-      <HeaderContainer>
+      <HeaderContainer
+        className={
+          scrollY < 32
+            ? "transition-cubic-bezier"
+            : "transition-cubic-bezier fixed"
+        }
+      >
         <HeaderRow>
           <HeaderRowContainer>
             <HeaderLogoWrapper>
