@@ -1,0 +1,289 @@
+import styled, { keyframes } from "styled-components";
+import { BPLarge, BPSmall } from "../BreakPoint";
+import SearchIcon from "../Icon/Search";
+import BagIcon from "../Icon/Bag";
+import UserIcon from "../Icon/User";
+import ArrowDownIcon from "../Icon/ArrowDown";
+import { useRouter } from "next/router";
+
+const HeaderWrapper = styled.div`
+  height: 65px;
+`;
+const HeaderContainer = styled.header`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  top: 0;
+  left: 0;
+  position: relative;
+  z-index: 30;
+  width: 100%;
+  user-select: none;
+  background: #fff;
+  border-bottom: 1px solid #000;
+`;
+const HeaderRow = styled.div`
+  width: 100%;
+  padding: 10px 0;
+  position: relative;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 5;
+`;
+const HeaderRowContainer = styled.div`
+  width: 100%;
+  padding: 0px 15px;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-flow: row wrap;
+
+  @media (max-width: ${BPSmall}) {
+    padding: 0px 5px;
+  }
+`;
+const HeaderLogoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex: 0 0 66.6666666667%;
+  max-width: 66.6666666667%;
+
+  @media (min-width: ${BPLarge}) {
+    flex: 0 0 16.6666666667%;
+    max-width: 16.6666666667%;
+  }
+`;
+const ToggleHodler = styled.div`
+  display: inline-flex;
+  cursor: pointer;
+  align-items: center;
+  @media (min-width: ${BPLarge}) {
+    display: none;
+  }
+`;
+const MobileToggle = styled.div`
+  display: inline-flex;
+  width: 18px;
+  height: 16px;
+  align-items: center;
+  transition: none;
+  vertical-align: middle;
+  position: relative;
+
+  & span:nth-child(1) {
+    top: 0px;
+  }
+  & span:nth-child(2) {
+    top: 7px;
+  }
+  & span:nth-child(3) {
+    top: 14px;
+  }
+`;
+const ToggleBar = styled.span`
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background: #000;
+  content: " ";
+  left: 0;
+`;
+const LogoContainer = styled.div`
+  display: inline-flex;
+  flex-shrink: 0;
+  margin: 0 auto 0 5px;
+  max-width: 100%;
+`;
+const LogoLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+`;
+const HeaderActionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0;
+  flex: 0 0 33.3333333333%;
+  max-width: 33.3333333333%;
+
+  @media (min-width: ${BPLarge}) {
+    flex: 0 0 16.6666666667%;
+    max-width: 16.6666666667%;
+  }
+`;
+const HeaderActionContainer = styled.div`
+  margin-left: auto;
+  display: flex;
+`;
+const IconContainer = styled.div`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 10px 0;
+  margin-left: 12px;
+`;
+const HeaderNavigationWrapper = styled.div`
+  @media (max-width: ${BPLarge}) {
+    display: none;
+  }
+  @media (min-width: ${BPLarge}) {
+    display: flex;
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%;
+    align-items: center;
+    padding: 0;
+  }
+`;
+const HeaderNavigationContainer = styled.div`
+  display: inline-flex;
+  margin: 0 auto;
+`;
+const HeaderNavigationMenu = styled.ul`
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1;
+  flex-wrap: wrap;
+`;
+const HeaderNavigationItem = styled.li`
+  display: inline-flex;
+  white-space: nowrap;
+  margin-left: 20px;
+`;
+const HeaderNavigationItemLink = styled.a`
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 400;
+
+  &:hover,
+  &.active {
+    color: #eb9a72;
+  }
+`;
+const ArrorDownIconWrapper = styled.div`
+  margin-left: 5px;
+  padding-bottom: 4px;
+`;
+
+const Wave = keyframes`
+  0%, 8% {
+    transform: translateY(0)
+  }
+  4% {
+    transform: translateY(-5px)
+  }
+`;
+const ShopLetterAnimate = styled.div`
+  display: inline-block;
+  animation: ${Wave} 5s infinite;
+  animation-delay: calc(0.1s * var(--i) + 2s);
+`;
+
+const Header = () => {
+  const { asPath } = useRouter();
+
+  return (
+    <HeaderWrapper>
+      <HeaderContainer>
+        <HeaderRow>
+          <HeaderRowContainer>
+            <HeaderLogoWrapper>
+              <ToggleHodler>
+                <ToggleHodler>
+                  <MobileToggle>
+                    <ToggleBar />
+                    <ToggleBar />
+                    <ToggleBar />
+                  </MobileToggle>
+                </ToggleHodler>
+              </ToggleHodler>
+              <LogoContainer>
+                <LogoLink>
+                  <h3>Cupsholic</h3>
+                </LogoLink>
+              </LogoContainer>
+            </HeaderLogoWrapper>
+            {/* ------------------------------------------------- */}
+            <HeaderNavigationWrapper>
+              <HeaderNavigationContainer>
+                <nav>
+                  <HeaderNavigationMenu>
+                    <HeaderNavigationItem>
+                      <HeaderNavigationItemLink
+                        className={asPath === "/" ? "active" : null}
+                      >
+                        Home
+                      </HeaderNavigationItemLink>
+                    </HeaderNavigationItem>
+                    <HeaderNavigationItem>
+                      <HeaderNavigationItemLink
+                        className={asPath === "/shop/" ? "active" : null}
+                      >
+                        <ShopLetterAnimate style={{ "--i": 1 }}>
+                          S
+                        </ShopLetterAnimate>
+                        <ShopLetterAnimate style={{ "--i": 2 }}>
+                          h
+                        </ShopLetterAnimate>
+                        <ShopLetterAnimate style={{ "--i": 3 }}>
+                          o
+                        </ShopLetterAnimate>
+                        <ShopLetterAnimate style={{ "--i": 4 }}>
+                          p
+                        </ShopLetterAnimate>
+                        <ArrorDownIconWrapper>
+                          <ArrowDownIcon />
+                        </ArrorDownIconWrapper>
+                      </HeaderNavigationItemLink>
+                    </HeaderNavigationItem>
+                    <HeaderNavigationItem>
+                      <HeaderNavigationItemLink
+                        className={asPath === "/blog/" ? "active" : null}
+                      >
+                        Blog
+                      </HeaderNavigationItemLink>
+                    </HeaderNavigationItem>
+                    <HeaderNavigationItem>
+                      <HeaderNavigationItemLink
+                        className={asPath === "/about/" ? "active" : null}
+                      >
+                        About
+                      </HeaderNavigationItemLink>
+                    </HeaderNavigationItem>
+                    <HeaderNavigationItem>
+                      <HeaderNavigationItemLink
+                        className={asPath === "/contact/" ? "active" : null}
+                      >
+                        Contact
+                      </HeaderNavigationItemLink>
+                    </HeaderNavigationItem>
+                  </HeaderNavigationMenu>
+                </nav>
+              </HeaderNavigationContainer>
+            </HeaderNavigationWrapper>
+            {/* ------------------------------------------------- */}
+            <HeaderActionWrapper>
+              <HeaderActionContainer>
+                <IconContainer>
+                  <SearchIcon />
+                </IconContainer>
+                <IconContainer>
+                  <UserIcon />
+                </IconContainer>
+                <IconContainer>
+                  <BagIcon />
+                </IconContainer>
+              </HeaderActionContainer>
+            </HeaderActionWrapper>
+          </HeaderRowContainer>
+        </HeaderRow>
+      </HeaderContainer>
+    </HeaderWrapper>
+  );
+};
+
+export default Header;
