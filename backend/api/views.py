@@ -81,7 +81,8 @@ class CategoryProducts(generics.ListAPIView):
 
     def get_queryset(self):
         category_name = self.kwargs["name"]
-        return Product.objects.filter(category__name=category_name)
+        category = Category.objects.get(name=category_name)
+        return Product.objects.filter(category=category)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -120,7 +121,8 @@ class ColorProducts(generics.ListAPIView):
 
     def get_queryset(self):
         color_name = self.kwargs["name"]
-        return Product.objects.filter(color__name=color_name)
+        color = Color.objects.get(name=color_name)
+        return Product.objects.filter(color=color)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -159,7 +161,8 @@ class SizeProducts(generics.ListAPIView):
 
     def get_queryset(self):
         size_name = self.kwargs["name"]
-        return Product.objects.filter(size__name=size_name)
+        size = Size.objects.get(name=size_name)
+        return Product.objects.filter(sizes=size)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

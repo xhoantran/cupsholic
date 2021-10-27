@@ -1,9 +1,10 @@
 from django.core.validators import EmailValidator
 from rest_framework import serializers
+from django_restql.mixins import DynamicFieldsMixin
 from .models import *
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ["id", "email", "first_name", "last_name"]
@@ -12,31 +13,31 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class CategorySerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ["id", "name"]
 
 
-class ColorSerializer(serializers.ModelSerializer):
+class ColorSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     class Meta:
         model = Color
         fields = ["id", "name"]
 
 
-class SizeSerializer(serializers.ModelSerializer):
+class SizeSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     class Meta:
         model = Size
         fields = ["id", "name"]
 
 
-class TagSerializer(serializers.ModelSerializer):
+class TagSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ["id", "name"]
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ProductSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     category = CategorySerializer(many=True, required=False)
     tag = TagSerializer(many=True, required=False)
     color = ColorSerializer(many=True, required=False)
@@ -74,7 +75,8 @@ class ProductSerializer(serializers.ModelSerializer):
     def get_or_create_color(self, color_list):
         color_ids = []
         for color in color_list:
-            color_obj, created = Color.objects.get_or_create(name=color["name"])
+            color_obj, created = Color.objects.get_or_create(
+                name=color["name"])
             color_ids.append(color_obj.id)
         return color_ids
 
@@ -103,7 +105,8 @@ class ProductSerializer(serializers.ModelSerializer):
         color_list = validated_data.pop("color")
         size_list = validated_data.pop("size")
         instance.name = validated_data.get("name", instance.name)
-        instance.description = validated_data.get("description", instance.description)
+        instance.description = validated_data.get(
+            "description", instance.description)
         instance.price = validated_data.get("price", instance.price)
         instance.image = validated_data.get("image", instance.image)
         instance.save()
