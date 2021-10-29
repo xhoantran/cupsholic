@@ -1,11 +1,12 @@
 import Head from "next/head";
-
+import Attract from "../components/Content/Attract";
+import ContentContainer from "../components/Content/Container";
+import Gap from "../components/Gap";
 import Footer from "../components/Layout/Footer";
 import Header from "../components/Layout/Header";
 import Subheader from "../components/Layout/Subheader";
 import Wrapper from "../components/Layout/Wrapper";
-import ContentContainer from "../components/Content/Container";
-import Attract from "../components/Content/Attract";
+import BestSellers from "../components/Content/BestSellers";
 
 export default function Home() {
   return (
@@ -20,6 +21,8 @@ export default function Home() {
         <Header />
         <ContentContainer>
           <Attract />
+          <Gap height="50px" />
+          <BestSellers />
         </ContentContainer>
         <Footer />
       </Wrapper>

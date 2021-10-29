@@ -51,3 +51,9 @@ p {
   line-height: 1.6;
   text-rendering: optimizeLegibility;
 }
+
+p {
+  word-spacing: 0.001rem;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
