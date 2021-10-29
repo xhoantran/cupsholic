@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from datetime import timedelta
 from pathlib import Path
-from django.conf import settings
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-q4xq#p7x1fyg#(qfd2$z)(indidp1om4ge(*$ceh057n=y*iwq"
@@ -36,11 +36,11 @@ ALLOWED_HOSTS = [
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "localhost",
+        "HOST": "postgres",
         "PORT": "5432",
     }
 }
@@ -176,7 +176,7 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": True,
     "UPDATE_LAST_LOGIN": False,
     "ALGORITHM": "HS256",
-    "SIGNING_KEY": settings.SECRET_KEY,
+    "SIGNING_KEY": SECRET_KEY,
     "VERIFYING_KEY": None,
     "AUDIENCE": None,
     "ISSUER": None,
