@@ -20,8 +20,6 @@ services:
       dockerfile: ./docker_compose/node/development/Dockerfile
     expose:
       - "3000"
-    ports:
-      - "3000:3000"
     volumes:
       - ./frontend:/frontend
     command: yarn dev
@@ -32,8 +30,8 @@ services:
     build:
       context: .
       dockerfile: ./docker_compose/django/development/Dockerfile
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     env_file:
       - .env.staging
     volumes:
