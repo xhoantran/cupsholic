@@ -1,6 +1,7 @@
 from django.core.validators import EmailValidator
-from rest_framework import serializers
 from django_restql.mixins import DynamicFieldsMixin
+from rest_framework import serializers
+
 from .models import *
 
 
@@ -48,6 +49,7 @@ class ProductSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
         fields = [
             "id",
             "name",
+            "image",
             "description",
             "price",
             "category",
@@ -55,6 +57,9 @@ class ProductSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
             "color",
             "size",
         ]
+        extra_kwargs = {
+            "image": {"required": False},
+        }
 
     def get_or_create_category(self, category_list):
         package_ids = []
@@ -88,10 +93,10 @@ class ProductSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
         return size_ids
 
     def create(self, validated_data):
-        category_list = validated_data.pop("category")
-        tag_list = validated_data.pop("tag")
-        color_list = validated_data.pop("color")
-        size_list = validated_data.pop("size")
+        category_list = validated_data.pop("category", [])
+        tag_list = validated_data.pop("tag", [])
+        color_list = validated_data.pop("color", [])
+        size_list = validated_data.pop("size", [])
         product = Product.objects.create(**validated_data)
         product.category.set(self.get_or_create_category(category_list))
         product.tag.set(self.get_or_create_tag(tag_list))
@@ -100,10 +105,10 @@ class ProductSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
         return product
 
     def update(self, instance, validated_data):
-        category_list = validated_data.pop("category")
-        tag_list = validated_data.pop("tag")
-        color_list = validated_data.pop("color")
-        size_list = validated_data.pop("size")
+        category_list = validated_data.get("category", [])
+        tag_list = validated_data.get("tag", [])
+        color_list = validated_data.get("color", [])
+        size_list = validated_data.get("size", [])
         instance.name = validated_data.get("name", instance.name)
         instance.description = validated_data.get(
             "description", instance.description)
