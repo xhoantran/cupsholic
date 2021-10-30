@@ -13,7 +13,6 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 class ProductList(generics.ListCreateAPIView):
     permission_classes = (IsAdminOrReadOnly,)
-    queryset = Product.objects.all().order_by("name")
     serializer_class = ProductSerializer
     pagination_class = StandardResultsSetPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
@@ -25,6 +24,22 @@ class ProductList(generics.ListCreateAPIView):
     ]
     ordering_fields = ["id", "price", "updated_at"]
     ordering = ["id", "name"]
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        category = self.request.query_params.get("category")
+        if category:
+            queryset = queryset.filter(category__name=category)
+        tag = self.request.query_params.get("tag")
+        if tag:
+            queryset = queryset.filter(tag__name=tag)
+        color = self.request.query_params.get("color")
+        if color:
+            queryset = queryset.filter(color__name=color)
+        bestseller = self.request.query_params.get("bestseller")
+        if bestseller:
+            queryset = queryset.filter(bestseller=True)
+        return queryset
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -75,19 +90,6 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
         return self.destroy(request, *args, **kwargs)
 
 
-class CategoryProducts(generics.ListAPIView):
-    permission_classes = (IsAdminOrReadOnly,)
-    serializer_class = ProductSerializer
-
-    def get_queryset(self):
-        category_name = self.kwargs["name"]
-        category = Category.objects.get(name=category_name)
-        return Product.objects.filter(category=category)
-
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
-
-
 class ColorList(generics.ListCreateAPIView):
     permission_classes = (IsAdminOrReadOnly,)
     queryset = Color.objects.all().order_by("name")
@@ -115,19 +117,6 @@ class ColorDetail(generics.RetrieveUpdateDestroyAPIView):
         return self.destroy(request, *args, **kwargs)
 
 
-class ColorProducts(generics.ListAPIView):
-    permission_classes = (IsAdminOrReadOnly,)
-    serializer_class = ProductSerializer
-
-    def get_queryset(self):
-        color_name = self.kwargs["name"]
-        color = Color.objects.get(name=color_name)
-        return Product.objects.filter(color=color)
-
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
-
-
 class SizeList(generics.ListCreateAPIView):
     permission_classes = (IsAdminOrReadOnly,)
     queryset = Size.objects.all().order_by("name")
@@ -153,16 +142,3 @@ class SizeDetail(generics.RetrieveUpdateDestroyAPIView):
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
-
-
-class SizeProducts(generics.ListAPIView):
-    permission_classes = (IsAdminOrReadOnly,)
-    serializer_class = ProductSerializer
-
-    def get_queryset(self):
-        size_name = self.kwargs["name"]
-        size = Size.objects.get(name=size_name)
-        return Product.objects.filter(sizes=size)
-
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
