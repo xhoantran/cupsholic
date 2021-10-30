@@ -42,8 +42,6 @@ services:
     command: /start.sh
     depends_on:
       - postgres
-    links:
-      - postgres
 
   # Nginx
   # nginx:

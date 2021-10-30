@@ -6,7 +6,7 @@ import Footer from "../components/Layout/Footer";
 import Header from "../components/Layout/Header";
 import Subheader from "../components/Layout/Subheader";
 import Wrapper from "../components/Layout/Wrapper";
-import BestSellers from "../components/Content/BestSellers";
+// import BestSellers from "../components/Content/BestSellers";
 
 export default function Home() {
   return (
@@ -22,7 +22,7 @@ export default function Home() {
         <ContentContainer>
           <Attract />
           <Gap height="50px" />
-          <BestSellers />
+          {/* <BestSellers /> */}
         </ContentContainer>
         <Footer />
       </Wrapper>
