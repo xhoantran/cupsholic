@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { BPMedium } from "../BreakPoint";
+import AnimatedButton from "../AnimatedButton";
 
 const ContentAttract = styled.div`
   direction: ltr;
@@ -149,11 +150,7 @@ const Attract = () => {
         </ContentAttractTextDescript>
         {/* ------------------------------------------------ */}
         <div style={{ height: "20px" }} aria-hidden={true}></div>
-        <AttractButtonWrapper>
-          <AttractButtonContainer>
-            <AttractButton>See All Products</AttractButton>
-          </AttractButtonContainer>
-        </AttractButtonWrapper>
+        <AnimatedButton url="/products" text="See All Product" />
       </ContentAttractTextContainer>
     </ContentAttract>
   );

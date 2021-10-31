@@ -65,6 +65,10 @@ const ProductName = styled.h2`
   font-weight: 400;
   margin-bottom: 2px;
   line-height: 1.4;
+
+  &:hover {
+    color: #eb9a72;
+  }
 `;
 const ProductPrice = styled.div`
   margin-bottom: auto;
@@ -129,7 +133,7 @@ const Product = ({ data, numsItem }) => {
           </ProductThumbnailLink>
         </ProductThumbnail>
         <ProductInnerContent>
-          <ProductName>{name}</ProductName>
+          <ProductName className="transition-cubic-bezier">{name}</ProductName>
           <ProductPrice>
             <span>$</span>
             <ProductAmount>{price}</ProductAmount>

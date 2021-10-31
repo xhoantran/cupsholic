@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Gap from "../Gap";
 import Product from "../Product";
 import SessionHeader from "../SessionHeader";
+import AnimatedButton from "../AnimatedButton";
 
 const BestSellersDecription = styled.p`
   text-align: center;
@@ -55,8 +56,9 @@ const BestSellers = () => {
         <br />
         Lorem ipsum dolor sit amet.
       </BestSellersDecription>
+      {/* ------------------------------------------------- */}
       <Gap height="36px" />
-
+      {/* ------------------------------------------------- */}
       <ProductWrapper>
         <ProductGridContainer>
           {bestSellers.products.map((product) => (
@@ -68,6 +70,12 @@ const BestSellers = () => {
           ))}
         </ProductGridContainer>
       </ProductWrapper>
+      {/* ------------------------------------------------- */}
+      <Gap height="20px" />
+      {/* ------------------------------------------------- */}
+      <AnimatedButton text="View All Best Sellers" url="/products/bestseller" />
+      {/* ------------------------------------------------- */}
+      <Gap height="50px" />
     </>
   );
 };
