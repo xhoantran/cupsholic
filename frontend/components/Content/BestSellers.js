@@ -38,7 +38,6 @@ const BestSellers = () => {
     axios
       .get("http://localhost:8000/api/products/?bestseller=true")
       .then((response) => {
-        console.log(response);
         setBestSellers({
           products: response.data.results,
           numsItem: response.data.count,

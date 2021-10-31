@@ -2,9 +2,20 @@ import styled from "styled-components";
 import Link from "next/link";
 
 const AttractButtonWrapper = styled.div`
-  display: block;
-  margin: 0 auto;
-  text-align: center;
+  ${(props) =>
+    !props.alignLeft
+      ? `
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        
+      `
+      : `
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 0.5em;
+      `}
 `;
 const AttractButtonContainer = styled.div`
   display: inline-block;
@@ -37,7 +48,7 @@ const AttractButton = styled.a`
   background-color: #fecdab;
   border-color: #000;
   color: #000;
-  padding: 18px 40px;
+  padding: 20px 40px;
   transform: translate3d(0px, 0px, 0);
   transition: all 0.25s ease;
   font-size: 16px;
@@ -52,8 +63,8 @@ const AttractButton = styled.a`
   overflow-wrap: break-word;
 `;
 
-const AnimatedButton = ({ text, url }) => (
-  <AttractButtonWrapper>
+const AnimatedButton = ({ text, url, alignLeft }) => (
+  <AttractButtonWrapper alignLeft={alignLeft}>
     <AttractButtonContainer>
       <Link href={url}>
         <AttractButton>{text}</AttractButton>

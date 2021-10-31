@@ -7,6 +7,7 @@ import Header from "../components/Layout/Header";
 import Subheader from "../components/Layout/Subheader";
 import Wrapper from "../components/Layout/Wrapper";
 import BestSellers from "../components/Content/BestSellers";
+import LimitSale from "../components/Content/LimitSales";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
           <Attract />
           <Gap height="50px" />
           <BestSellers />
+          <LimitSale />
         </ContentContainer>
         <Footer />
       </Wrapper>
