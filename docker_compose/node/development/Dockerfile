@@ -1,10 +1,12 @@
 FROM node:latest
 
-COPY ./frontend /frontend
-
-WORKDIR /frontend
+WORKDIR /usr/src/app
 
 COPY ./frontend/package.json ./
 COPY ./frontend/yarn.lock ./
-RUN yarn install 
-RUN yarn
+
+RUN yarn install
+
+COPY ./frontend .
+
+CMD ["yarn", "dev"]

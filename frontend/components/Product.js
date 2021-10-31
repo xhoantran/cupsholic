@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import { BPLarge, BPMedium, BPSmall } from "./BreakPoint";
 
 const ProductGridItem = styled.li`
   font-size: 0.75rem;
@@ -16,6 +17,15 @@ const ProductGridItem = styled.li`
   list-style: none;
 
   line-height: 1.6;
+
+  @media (min-width: 481px) and (max-width: 600px) {
+    flex: 1 0 50%;
+    max-width: 50%;
+  }
+  @media (max-width: 480px) {
+    flex: 1 0 100%;
+    max-width: 100%;
+  }
 `;
 const ProductContainer = styled.div`
   display: flex;
@@ -43,13 +53,17 @@ const ProductInnerContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 15 px;
+  padding: 15px;
+
+  @media (min-width: ${BPMedium}) {
+    padding: 25px;
+  }
 `;
 const ProductName = styled.h2`
   font-family: Jost;
   font-size: 16px;
   font-weight: 400;
-  margin-bottom: 2 px;
+  margin-bottom: 2px;
   line-height: 1.4;
 `;
 const ProductPrice = styled.div`
@@ -69,7 +83,7 @@ const ProductAmount = styled.span`
   line-height: 1;
 `;
 const AddToCartContainer = styled.div`
-  margin: 12 px 0 0;
+  margin: 12px 0 0;
   line-height: 22px;
 `;
 const AddToCartButton = styled.a`
@@ -87,14 +101,13 @@ const AddToCartButton = styled.a`
   justify-content: center;
   text-align: center;
   background: #fff;
-  border: 1 px solid #000;
+  border: 1px solid #000;
   color: #000;
   border-radius: 0;
   font-size: 11px;
-  height: 30 px;
+  height: 30px;
   line-height: 28px;
-  padding: 0 14 px;
-  font-weight: 500;
+  padding: 0 14px;
   text-transform: uppercase;
 `;
 

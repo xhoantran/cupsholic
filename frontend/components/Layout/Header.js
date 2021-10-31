@@ -58,8 +58,8 @@ const HeaderRowContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
 
-  @media (max-width: ${BPSmall}) {
-    padding: 0px 5px;
+  @media (min-width: ${BPSmall}) {
+    padding: 0px px;
   }
 `;
 const HeaderLogoWrapper = styled.div`

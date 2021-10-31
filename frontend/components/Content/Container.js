@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BPMedium, BPLarge, BPSmall } from "../BreakPoint";
+import { BPSmall } from "../BreakPoint";
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@ const ContentContainerRow = styled.div`
   flex-flow: row wrap;
   background-size: cover;
 
-  @media (min-width: ${BPMedium}) {
+  @media (min-width: ${BPSmall}) {
     padding: 0 15px;
   }
 `;
@@ -23,10 +23,8 @@ const ContentContainerColumn = styled.div`
   flex: 0 0 100%;
   min-width: 0;
   max-width: 100%;
-  @media (min-width: ${BPMedium}) {
-    padding-right: 0.9375rem;
-    padding-left: 0.9375rem;
-  }
+  padding-right: 0.9375rem;
+  padding-left: 0.9375rem;
 `;
 
 function Content(props) {

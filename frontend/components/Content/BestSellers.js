@@ -31,19 +31,19 @@ const ProductGridContainer = styled.ul`
 const BestSellers = () => {
   const [bestSellers, setBestSellers] = useState({
     products: [],
-    numsItems: 0,
+    numsItem: 0,
   });
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:8000/api/products/?bestseller=true")
-  //     .then((response) => {
-  //       console.log(response);
-  //       setBestSellers({
-  //         products: response.data.results,
-  //         numsItems: response.data.count,
-  //       });
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/products/?bestseller=true")
+      .then((response) => {
+        console.log(response);
+        setBestSellers({
+          products: response.data.results,
+          numsItem: response.data.count,
+        });
+      });
+  }, []);
 
   return (
     <>
@@ -63,7 +63,7 @@ const BestSellers = () => {
             <Product
               key={product.id}
               data={product}
-              numsItems={bestSellers.numsItems}
+              numsItem={bestSellers.numsItem}
             />
           ))}
         </ProductGridContainer>
