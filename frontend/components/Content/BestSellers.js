@@ -46,36 +46,41 @@ const BestSellers = () => {
   }, []);
 
   return (
-    <>
-      <SessionHeader fontSize="30px">Best Sellers</SessionHeader>
-      <Gap height="5px" />
-      <BestSellersDecription>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae,
-        recusandae!
-        <br />
-        Lorem ipsum dolor sit amet.
-      </BestSellersDecription>
-      {/* ------------------------------------------------- */}
-      <Gap height="36px" />
-      {/* ------------------------------------------------- */}
-      <ProductWrapper>
-        <ProductGridContainer>
-          {bestSellers.products.map((product) => (
-            <Product
-              key={product.id}
-              data={product}
-              numsItem={bestSellers.numsItem}
-            />
-          ))}
-        </ProductGridContainer>
-      </ProductWrapper>
-      {/* ------------------------------------------------- */}
-      <Gap height="20px" />
-      {/* ------------------------------------------------- */}
-      <AnimatedButton text="View All Best Sellers" url="/products/bestseller" />
-      {/* ------------------------------------------------- */}
-      <Gap height="50px" />
-    </>
+    bestSellers.numsItem !== 0 && (
+      <>
+        <SessionHeader fontSize="30px">Best Sellers</SessionHeader>
+        <Gap height="5px" />
+        <BestSellersDecription>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae,
+          recusandae!
+          <br />
+          Lorem ipsum dolor sit amet.
+        </BestSellersDecription>
+        {/* ------------------------------------------------- */}
+        <Gap height="36px" />
+        {/* ------------------------------------------------- */}
+        <ProductWrapper>
+          <ProductGridContainer>
+            {bestSellers.products.map((product) => (
+              <Product
+                key={product.id}
+                data={product}
+                numsItem={bestSellers.numsItem}
+              />
+            ))}
+          </ProductGridContainer>
+        </ProductWrapper>
+        {/* ------------------------------------------------- */}
+        <Gap height="20px" />
+        {/* ------------------------------------------------- */}
+        <AnimatedButton
+          text="View All Best Sellers"
+          url="/products/bestseller"
+        />
+        {/* ------------------------------------------------- */}
+        <Gap height="50px" />
+      </>
+    )
   );
 };
 
