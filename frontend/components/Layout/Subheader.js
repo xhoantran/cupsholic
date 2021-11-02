@@ -7,7 +7,7 @@ const SubheaderContainer = styled.aside`
   justify-content: center;
   background: #000000;
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
   width: 100%;
   line-height: 1;
   padding: 9px 10px;

@@ -53,6 +53,7 @@ class Product(models.Model):
     size = models.ManyToManyField(Size)
     available = models.BooleanField(default=True)
     bestseller = models.BooleanField(default=False)
+    newarrival = models.BooleanField(default=False)
     sale = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(upload_to="product-image/")

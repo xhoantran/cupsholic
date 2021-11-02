@@ -1,32 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import AnimatedButton from "../AnimatedButton";
 import Gap from "../Gap";
+import {
+  ProductGridContainer,
+  ProductWrapper,
+} from "../Layout/ProductGridContainer";
 import Product from "../Product";
 import SessionHeader from "../SessionHeader";
-import AnimatedButton from "../AnimatedButton";
 
-const BestSellersDecription = styled.p`
+const TitleDecription = styled.p`
   text-align: center;
-`;
-const ProductWrapper = styled.div`
-  text-align: center;
-`;
-const ProductGridContainer = styled.ul`
-  border-top: 1px solid transparent;
-  border-left: 1px solid transparent;
-  min-width: 100%;
-  margin: 0 0 30px;
-  display: flex;
-
-  flex-wrap: wrap;
-  padding: 0;
-  background-clip: padding-box;
-  list-style-type: disc;
-
-  @media (max-width: 480px) {
-    display: block;
-  }
 `;
 
 const BestSellers = () => {
@@ -50,12 +35,12 @@ const BestSellers = () => {
       <>
         <SessionHeader fontSize="30px">Best Sellers</SessionHeader>
         <Gap height="5px" />
-        <BestSellersDecription>
+        <TitleDecription>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae,
           recusandae!
           <br />
           Lorem ipsum dolor sit amet.
-        </BestSellersDecription>
+        </TitleDecription>
         {/* ------------------------------------------------- */}
         <Gap height="36px" />
         {/* ------------------------------------------------- */}
@@ -77,8 +62,6 @@ const BestSellers = () => {
           text="View All Best Sellers"
           url="/products/bestseller"
         />
-        {/* ------------------------------------------------- */}
-        <Gap height="50px" />
       </>
     )
   );

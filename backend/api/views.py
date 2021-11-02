@@ -39,6 +39,9 @@ class ProductList(generics.ListCreateAPIView):
         bestseller = self.request.query_params.get("bestseller")
         if bestseller:
             queryset = queryset.filter(bestseller=True)
+        newarrival = self.request.query_params.get("newarrival")
+        if newarrival:
+            queryset = queryset.filter(newarrival=True)
         return queryset
 
     def get(self, request, *args, **kwargs):

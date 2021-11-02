@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 
 const SessionHeader = styled.h3`
   text-align: center;
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => (props.fontSize ? props.fontSize : "30px")};\
+  margin-bottom: 0.5rem;
 `;
 
 SessionHeader.propTypes = {

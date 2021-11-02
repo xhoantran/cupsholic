@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { BPLarge, BPSmall } from "../BreakPoint";
 import ArrowDownIcon from "../Icon/ArrowDown";
-import BagIcon from "../Icon/Bag";
+// import BagIcon from "../Icon/Bag";
 import SearchIcon from "../Icon/Search";
 import UserIcon from "../Icon/User";
 
@@ -59,7 +59,7 @@ const HeaderRowContainer = styled.div`
   flex-flow: row wrap;
 
   @media (min-width: ${BPSmall}) {
-    padding: 0px px;
+    padding: 0px 30px;
   }
 `;
 const HeaderLogoWrapper = styled.div`
@@ -142,6 +142,10 @@ const IconContainer = styled.div`
   font-size: 14px;
   padding: 10px 0;
   margin-left: 12px;
+
+  @media only screen and (min-width: 768px) {
+    margin-left: 22px;
+  }
 `;
 const HeaderNavigationWrapper = styled.div`
   @media (max-width: ${BPLarge}) {
@@ -202,8 +206,77 @@ const ShopLetterAnimate = styled.div`
   animation: ${Wave} 5s infinite;
   animation-delay: calc(0.1s * var(--i) + 2s);
 `;
+const SearchIconInnerWrapper = styled.div`
+  z-index: 40;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+`;
+const SearchBarWrapper = styled.div`
+  display: none;
+  position: absolute;
+  z-index: 30;
+  top: 3px;
+  right: 0;
+  background: #fff;
+  padding-left: 30px;
+  width: calc(100vw - 50px);
 
-const Header = () => {
+  @media only screen and (min-width: 768px) {
+    width: 300px;
+  }
+
+  &.active {
+    display: block;
+  }
+`;
+const SearchBarContainer = styled.div`
+  position: relative;
+  width: 100%;
+  display: inline-flex;
+  padding-right: 40px;
+`;
+const SearchBarForm = styled.form`
+  display: flex;
+  position: relative;
+  border-radius: 5px;
+  padding-right: 38px;
+  width: 100%;
+  max-width: 500px;
+`;
+const SearchForLabel = styled.label`
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal;
+`;
+const SearchBarInput = styled.input`
+  font-weight: 400;
+  background: #fff;
+  max-width: 100%;
+  outline: 0;
+  font-family: inherit;
+  border-radius: 6px;
+  color: #000;
+  box-shadow: none;
+  appearance: none;
+  padding: 10px 0px;
+  border: 0;
+  flex: 1;
+  height: 38px;
+  font-size: 14px;
+  background-color: transparent;
+  outline-offset: -2px;
+`;
+
+const Header = ({ onOpenMenu }) => {
   const { asPath } = useRouter();
   const [scrollY, setScrollY] = useState(0);
   useEffect(() => {
@@ -219,6 +292,11 @@ const Header = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [openSearch, setOpenSearch] = useState(false);
+  const searchToggle = () => {
+    setOpenSearch(!openSearch);
+  };
+
   return (
     <HeaderWrapper>
       <HeaderContainer
@@ -231,7 +309,7 @@ const Header = () => {
         <HeaderRow>
           <HeaderRowContainer>
             <HeaderLogoWrapper>
-              <ToggleHodler>
+              <ToggleHodler onClick={onOpenMenu}>
                 <ToggleHodler>
                   <MobileToggle>
                     <ToggleBar />
@@ -304,20 +382,35 @@ const Header = () => {
                 </nav>
               </HeaderNavigationContainer>
             </HeaderNavigationWrapper>
-            {/* ------------------------------------------------- */}
+            {/* --------------------Session Header------------------------- */}
             <HeaderActionWrapper>
               <HeaderActionContainer>
-                <IconContainer>
-                  <SearchIcon />
+                <IconContainer style={{ position: "relative" }}>
+                  <SearchIconInnerWrapper onClick={searchToggle}>
+                    <SearchIcon />
+                  </SearchIconInnerWrapper>
+                  <SearchBarWrapper className={openSearch ? "active" : null}>
+                    <SearchBarContainer>
+                      <SearchBarForm>
+                        <SearchBarInput
+                          placeholder="Search your favorite cups..."
+                          autoComplete={true}
+                        />
+                      </SearchBarForm>
+                    </SearchBarContainer>
+                  </SearchBarWrapper>
                 </IconContainer>
+                {/* ------------------- */}
                 <IconContainer>
                   <UserIcon />
                 </IconContainer>
-                <IconContainer>
+                {/* ------------------- */}
+                {/* <IconContainer>
                   <BagIcon />
-                </IconContainer>
+                </IconContainer> */}
               </HeaderActionContainer>
             </HeaderActionWrapper>
+            {/* --------------------Session Header------------------------- */}
           </HeaderRowContainer>
         </HeaderRow>
       </HeaderContainer>

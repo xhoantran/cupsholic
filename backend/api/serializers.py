@@ -57,6 +57,7 @@ class ProductSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
             "color",
             "size",
             "bestseller",
+            "newarrival"
         ]
         extra_kwargs = {
             "image": {"required": False},
@@ -116,6 +117,7 @@ class ProductSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
         instance.price = validated_data.get("price", instance.price)
         instance.image = validated_data.get("image", instance.image)
         instance.bestseller = validated_data.get("bestseller", instance.bestseller)
+        instance.newarrival = validated_data.get("newarrival", instance.newarrival)
         instance.save()
         instance.category.set(self.get_or_create_category(category_list))
         instance.tag.set(self.get_or_create_tag(tag_list))
