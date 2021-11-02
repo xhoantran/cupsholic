@@ -21,6 +21,7 @@ export default function Home() {
   }
   function handleCloseMenu() {
     setIsOpenMenu(false);
+    console.log("closeee");
   }
   return (
     <>

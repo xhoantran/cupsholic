@@ -6,6 +6,7 @@ import ArrowDownIcon from "../Icon/ArrowDown";
 // import BagIcon from "../Icon/Bag";
 import SearchIcon from "../Icon/Search";
 import UserIcon from "../Icon/User";
+import useFocus from "../CustomHook/useFocus";
 
 const HeaderWrapper = styled.div`
   height: 65px;
@@ -292,9 +293,13 @@ const Header = ({ onOpenMenu }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [inputRef, setInputFocus] = useFocus();
   const [openSearch, setOpenSearch] = useState(false);
   const searchToggle = () => {
     setOpenSearch(!openSearch);
+    setTimeout(() => {
+      setInputFocus();
+    }, 10);
   };
 
   return (
@@ -386,7 +391,7 @@ const Header = ({ onOpenMenu }) => {
             <HeaderActionWrapper>
               <HeaderActionContainer>
                 <IconContainer style={{ position: "relative" }}>
-                  <SearchIconInnerWrapper onClick={searchToggle}>
+                  <SearchIconInnerWrapper onClick={() => searchToggle()}>
                     <SearchIcon />
                   </SearchIconInnerWrapper>
                   <SearchBarWrapper className={openSearch ? "active" : null}>
@@ -394,7 +399,7 @@ const Header = ({ onOpenMenu }) => {
                       <SearchBarForm>
                         <SearchBarInput
                           placeholder="Search your favorite cups..."
-                          autoComplete={true}
+                          ref={inputRef}
                         />
                       </SearchBarForm>
                     </SearchBarContainer>

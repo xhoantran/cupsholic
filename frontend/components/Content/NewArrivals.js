@@ -21,7 +21,6 @@ const NewArrival = () => {
           products: response.data.results,
           numsItem: response.data.count,
         });
-        console.log(response);
       });
   }, []);
 

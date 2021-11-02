@@ -18,14 +18,14 @@ const MobileMenuContainer = styled.nav`
   background: #fff;
   top: 0;
   transition: transform 0.3s ease;
-  transition-delay: 0.4s;
+  transition-delay: 0.3s;
 
   @media only screen and (min-width: ${BPSmall}) {
     width: 340px;
   }
 
   &.active {
-    transition-delay: 0.3s;
+    transition-delay: 0.2s;
     transform: translateX(0);
   }
 `;
@@ -71,10 +71,10 @@ const MobileMenuItem = styled.li`
   border-bottom: 1px solid #eee;
   transition: opacity 0.2s ease-in-out;
   opacity: 0;
-  transition-delay: calc(0.1s * (5 - var(--i)));
+  transition-delay: calc(0.05s * (5 - var(--i)));
 
   &.active {
-    transition-delay: calc(0.1s * var(--i) + 0.2s);
+    transition-delay: calc(0.1s * var(--i) + 0s);
     opacity: 1;
   }
 `;
@@ -142,11 +142,11 @@ const MobileLoginItemLink = styled.a`
   transition: none;
 `;
 
-const MobileMenu = ({ isOpen }) => {
+const MobileMenu = ({ isOpen, onClose }) => {
   return (
     <>
       <MobileMenuContainer className={isOpen ? "active" : null}>
-        <MobileMenuHeader>
+        <MobileMenuHeader onClick={onClose}>
           <MobileMenuClose>Close</MobileMenuClose>
         </MobileMenuHeader>
         <MobileMenuInner>
@@ -219,6 +219,7 @@ const ClickCapture = styled.div`
   width: 100%;
   height: 100%;
   transition: opacity 0.3s ease-in-out;
+  transision-delay: 0.1s;
 `;
 
 const OverlayContainer = ({ isOpenMenu, onClose }) => {
@@ -252,14 +253,13 @@ const OverlayContainer = ({ isOpenMenu, onClose }) => {
     <>
       <ClickCapture
         onClick={onClose}
-        // className={isOpenMenu ? "active" : null}
         style={{
           opacity: ClickCaptureStyle.opacity,
           visibility: ClickCaptureStyle.visibility,
           pointerEvents: ClickCaptureStyle.pointerEvents,
         }}
       />
-      <MobileMenu isOpen={isOpenMenu} />
+      <MobileMenu isOpen={isOpenMenu} onClose={onClose} />
     </>
   );
 };
