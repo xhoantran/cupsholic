@@ -47,7 +47,7 @@ class Tag(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(max_length=1000)
-    category = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, related_name='products', null=True)
     tag = models.ManyToManyField(Tag)
     color = models.ManyToManyField(Color)
     size = models.ManyToManyField(Size)
