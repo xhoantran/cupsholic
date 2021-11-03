@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { BPMedium } from "./BreakPoint";
+import { BPMedium } from "./Layout/BreakPoint";
+import Link from "next/link";
 
 const ProductGridItem = styled.li`
   font-size: 0.75rem;
@@ -121,19 +122,25 @@ const Product = ({ data, numsItem }) => {
     <ProductGridItem numsItem={numsItem}>
       <ProductContainer>
         <ProductThumbnail>
-          <ProductThumbnailLink href="#">
-            <ProductThumbnailImageContainer>
-              <Image
-                loader={() => image}
-                src={image}
-                width={640}
-                height={640}
-              />
-            </ProductThumbnailImageContainer>
-          </ProductThumbnailLink>
+          <Link href="#">
+            <ProductThumbnailLink>
+              <ProductThumbnailImageContainer>
+                <Image
+                  loader={() => image}
+                  src={image}
+                  width={640}
+                  height={640}
+                />
+              </ProductThumbnailImageContainer>
+            </ProductThumbnailLink>
+          </Link>
         </ProductThumbnail>
         <ProductInnerContent>
-          <ProductName className="transition-cubic-bezier">{name}</ProductName>
+          <Link href="#">
+            <ProductName className="transition-cubic-bezier">
+              {name}
+            </ProductName>
+          </Link>
           <ProductPrice>
             <span>$</span>
             <ProductAmount>{price}</ProductAmount>

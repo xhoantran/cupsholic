@@ -1,13 +1,15 @@
 import Head from "next/head";
 import ContentContainer, {
   ContentWrapper,
-} from "../components/Content/Container";
+} from "../components/Layout/Container";
 import Footer from "../components/Layout/Footer";
 import Header from "../components/Layout/Header";
 import Subheader from "../components/Layout/Subheader";
 import Wrapper from "../components/Layout/Wrapper";
 import OverlayContainer from "../components/Layout/OverlayContainer";
 import { useState } from "react";
+import BreadCrumb from "../components/Layout/BreadCrumb";
+import ShopProduct from "../components/Shop/ShopProduct";
 
 export default function Shop() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -28,7 +30,10 @@ export default function Shop() {
         <Subheader />
         <Header onOpenMenu={handleOpenMenu} />
         <ContentWrapper>
-          <ContentContainer></ContentContainer>
+          <BreadCrumb />
+          <ContentContainer>
+            <ShopProduct />
+          </ContentContainer>
         </ContentWrapper>
         <Footer />
         <OverlayContainer isOpenMenu={isOpenMenu} onClose={handleCloseMenu} />

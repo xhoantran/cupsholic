@@ -1,20 +1,20 @@
 import Head from "next/head";
-import Attract from "../components/Content/Attract";
-import BestSellers from "../components/Content/BestSellers";
+import { useState } from "react";
+import Gap from "../components/Gap";
+import Attract from "../components/LandingPage/Attract";
+import BestSellers from "../components/LandingPage/BestSellers";
+import LimitSale from "../components/LandingPage/LimitSales";
+import NewArrivals from "../components/LandingPage/NewArrivals";
 import ContentContainer, {
   ContentWrapper,
-} from "../components/Content/Container";
-import LimitSale from "../components/Content/LimitSales";
-import NewArrivals from "../components/Content/NewArrivals";
-import Gap from "../components/Gap";
+} from "../components/Layout/Container";
 import Footer from "../components/Layout/Footer";
 import Header from "../components/Layout/Header";
+import OverlayContainer from "../components/Layout/OverlayContainer";
+// import NewBlog from "../components/LandingPage/NewBlog";
+import ScrollToTop from "../components/Layout/ScrollToTop";
 import Subheader from "../components/Layout/Subheader";
 import Wrapper from "../components/Layout/Wrapper";
-// import NewBlog from "../components/Content/NewBlog";
-import ScrollToTop from "../components/Layout/ScrollToTop";
-import OverlayContainer from "../components/Layout/OverlayContainer";
-import { useState } from "react";
 
 export default function Home() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BPSmall } from "../BreakPoint";
+import { BPSmall } from "./BreakPoint";
 
 export const ContentWrapper = styled.div`
   display: flex;
@@ -29,11 +29,11 @@ const ContentContainerColumn = styled.div`
 
 function Content(props) {
   return (
-    <>
+    <div>
       <ContentContainerRow>
         <ContentContainerColumn>{props.children}</ContentContainerColumn>
       </ContentContainerRow>
-    </>
+    </div>
   );
 }
 

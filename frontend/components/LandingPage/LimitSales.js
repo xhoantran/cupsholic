@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BPSmall } from "../BreakPoint";
+import { BPSmall } from "../Layout/BreakPoint";
 import Gap from "../Gap";
 import AnimatedButton from "../AnimatedButton";
 

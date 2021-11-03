@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { BPSmall } from "../BreakPoint";
+import { BPSmall } from "./BreakPoint";
 import ArrowDownIcon from "../Icon/ArrowDown";
+import Link from "next/link";
 
 const MobileMenuContainer = styled.nav`
   display: flex;
@@ -156,21 +157,33 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 style={{ "--i": 1 }}
                 className={isOpen ? "active" : null}
               >
-                <MobileMenuNavigationLink>Home</MobileMenuNavigationLink>
+                <Link href="/">
+                  <MobileMenuNavigationLink>Home</MobileMenuNavigationLink>
+                </Link>
               </MobileMenuItem>
               <MobileMenuItem
                 style={{ "--i": 2 }}
                 className={isOpen ? "active" : null}
               >
-                <MobileMenuNavigationLink>
-                  <ShopLetterAnimate style={{ "--i": 1 }}>S</ShopLetterAnimate>
-                  <ShopLetterAnimate style={{ "--i": 2 }}>h</ShopLetterAnimate>
-                  <ShopLetterAnimate style={{ "--i": 3 }}>o</ShopLetterAnimate>
-                  <ShopLetterAnimate style={{ "--i": 4 }}>p</ShopLetterAnimate>
-                  <ArrorDownIconWrapper>
-                    <ArrowDownIcon />
-                  </ArrorDownIconWrapper>
-                </MobileMenuNavigationLink>
+                <Link href="/shop/">
+                  <MobileMenuNavigationLink>
+                    <ShopLetterAnimate style={{ "--i": 1 }}>
+                      S
+                    </ShopLetterAnimate>
+                    <ShopLetterAnimate style={{ "--i": 2 }}>
+                      h
+                    </ShopLetterAnimate>
+                    <ShopLetterAnimate style={{ "--i": 3 }}>
+                      o
+                    </ShopLetterAnimate>
+                    <ShopLetterAnimate style={{ "--i": 4 }}>
+                      p
+                    </ShopLetterAnimate>
+                    <ArrorDownIconWrapper>
+                      <ArrowDownIcon />
+                    </ArrorDownIconWrapper>
+                  </MobileMenuNavigationLink>
+                </Link>
               </MobileMenuItem>
               <MobileMenuItem
                 style={{ "--i": 3 }}

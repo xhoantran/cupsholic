@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { BPMedium } from "../BreakPoint";
+import { BPMedium } from "../Layout/BreakPoint";
 import AnimatedButton from "../AnimatedButton";
 
 const ContentAttract = styled.div`

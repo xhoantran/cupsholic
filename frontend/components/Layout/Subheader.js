@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BPSmall } from "../BreakPoint";
+import { BPSmall } from "./BreakPoint";
 
 const SubheaderContainer = styled.aside`
   display: flex;

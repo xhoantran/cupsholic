@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { BPLarge, BPSmall } from "../BreakPoint";
+import { BPLarge, BPSmall } from "./BreakPoint";
 import useFocus from "../CustomHook/useFocus";
 import ArrowDownIcon from "../Icon/ArrowDown";
 // import BagIcon from "../Icon/Bag";

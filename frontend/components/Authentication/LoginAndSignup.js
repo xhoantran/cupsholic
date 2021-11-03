@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BPSmall } from "../BreakPoint";
+import { BPSmall } from "../Layout/BreakPoint";
 
 const Wrapper = styled.div`
   margin: 40px 0;

@@ -1,14 +1,14 @@
 import Head from "next/head";
-import ContentContainer, {
-  ContentWrapper,
-} from "../components/Content/Container";
-import Footer from "../components/Layout/Footer";
-import Header from "../components/Layout/Header";
-import Subheader from "../components/Layout/Subheader";
-import Wrapper from "../components/Layout/Wrapper";
-import OverlayContainer from "../components/Layout/OverlayContainer";
 import { useState } from "react";
 import LoginAndSignup from "../components/Authentication/LoginAndSignup";
+import ContentContainer, {
+  ContentWrapper,
+} from "../components/Layout/Container";
+import Footer from "../components/Layout/Footer";
+import Header from "../components/Layout/Header";
+import OverlayContainer from "../components/Layout/OverlayContainer";
+import Subheader from "../components/Layout/Subheader";
+import Wrapper from "../components/Layout/Wrapper";
 
 export default function Account() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);

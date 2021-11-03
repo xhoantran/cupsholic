@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BPLarge, BPMedium, BPSmall } from "../BreakPoint";
+import { BPMedium, BPSmall } from "./BreakPoint";
 
 const FooterWrapper = styled.footer`
   background: #ffdab9;
