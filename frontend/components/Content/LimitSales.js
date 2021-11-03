@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BPLarge, BPMedium, BPSmall } from "../BreakPoint";
+import { BPSmall } from "../BreakPoint";
 import Gap from "../Gap";
 import AnimatedButton from "../AnimatedButton";
 
@@ -49,11 +49,7 @@ const LimitSale = () => {
           myself a fashion designer at all at the time of punk.
         </p>
         <Gap height="20px" />
-        <AnimatedButton
-          text="Sale Products"
-          url="/products/sales"
-          alignLeft={true}
-        />
+        <AnimatedButton text="Sale Products" alignLeft={true} />
         <Gap height="120px" />
       </LimitSaleContainer>
     </LimitSaleWrapper>

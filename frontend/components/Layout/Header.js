@@ -1,12 +1,13 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { BPLarge, BPSmall } from "../BreakPoint";
+import useFocus from "../CustomHook/useFocus";
 import ArrowDownIcon from "../Icon/ArrowDown";
 // import BagIcon from "../Icon/Bag";
 import SearchIcon from "../Icon/Search";
 import UserIcon from "../Icon/User";
-import useFocus from "../CustomHook/useFocus";
 
 const HeaderWrapper = styled.div`
   height: 65px;
@@ -143,7 +144,7 @@ const IconContainer = styled.div`
   font-size: 14px;
   padding: 10px 0;
   margin-left: 12px;
-
+  cursor: pointer;
   @media only screen and (min-width: 768px) {
     margin-left: 22px;
   }
@@ -324,9 +325,11 @@ const Header = ({ onOpenMenu }) => {
                 </ToggleHodler>
               </ToggleHodler>
               <LogoContainer>
-                <LogoLink>
-                  <h3>Cupsholic</h3>
-                </LogoLink>
+                <Link href="/">
+                  <LogoLink>
+                    <h3>Cupsholic</h3>
+                  </LogoLink>
+                </Link>
               </LogoContainer>
             </HeaderLogoWrapper>
             {/* ------------------------------------------------- */}
@@ -335,32 +338,36 @@ const Header = ({ onOpenMenu }) => {
                 <nav>
                   <HeaderNavigationMenu>
                     <HeaderNavigationItem>
-                      <HeaderNavigationItemLink
-                        className={asPath === "/" ? "active" : null}
-                      >
-                        Home
-                      </HeaderNavigationItemLink>
+                      <Link href="/">
+                        <HeaderNavigationItemLink
+                          className={asPath === "/" ? "active" : null}
+                        >
+                          Home
+                        </HeaderNavigationItemLink>
+                      </Link>
                     </HeaderNavigationItem>
                     <HeaderNavigationItem>
-                      <HeaderNavigationItemLink
-                        className={asPath === "/shop/" ? "active" : null}
-                      >
-                        <ShopLetterAnimate style={{ "--i": 1 }}>
-                          S
-                        </ShopLetterAnimate>
-                        <ShopLetterAnimate style={{ "--i": 2 }}>
-                          h
-                        </ShopLetterAnimate>
-                        <ShopLetterAnimate style={{ "--i": 3 }}>
-                          o
-                        </ShopLetterAnimate>
-                        <ShopLetterAnimate style={{ "--i": 4 }}>
-                          p
-                        </ShopLetterAnimate>
-                        <ArrorDownIconWrapper>
-                          <ArrowDownIcon />
-                        </ArrorDownIconWrapper>
-                      </HeaderNavigationItemLink>
+                      <Link href="/shop/">
+                        <HeaderNavigationItemLink
+                          className={asPath === "/shop/" ? "active" : null}
+                        >
+                          <ShopLetterAnimate style={{ "--i": 1 }}>
+                            S
+                          </ShopLetterAnimate>
+                          <ShopLetterAnimate style={{ "--i": 2 }}>
+                            h
+                          </ShopLetterAnimate>
+                          <ShopLetterAnimate style={{ "--i": 3 }}>
+                            o
+                          </ShopLetterAnimate>
+                          <ShopLetterAnimate style={{ "--i": 4 }}>
+                            p
+                          </ShopLetterAnimate>
+                          <ArrorDownIconWrapper>
+                            <ArrowDownIcon />
+                          </ArrorDownIconWrapper>
+                        </HeaderNavigationItemLink>
+                      </Link>
                     </HeaderNavigationItem>
                     <HeaderNavigationItem>
                       <HeaderNavigationItemLink
@@ -406,9 +413,11 @@ const Header = ({ onOpenMenu }) => {
                   </SearchBarWrapper>
                 </IconContainer>
                 {/* ------------------- */}
-                <IconContainer>
-                  <UserIcon />
-                </IconContainer>
+                <Link href="/account/">
+                  <IconContainer>
+                    <UserIcon />
+                  </IconContainer>
+                </Link>
                 {/* ------------------- */}
                 {/* <IconContainer>
                   <BagIcon />

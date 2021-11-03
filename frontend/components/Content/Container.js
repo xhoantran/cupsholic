@@ -5,7 +5,7 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   flex: 1;
   background: #fff;
-  min-height: 100vh;
+  min-height: 0;
 `;
 const ContentContainerRow = styled.div`
   max-width: 84.375rem;

@@ -58,10 +58,7 @@ const BestSellers = () => {
         {/* ------------------------------------------------- */}
         <Gap height="20px" />
         {/* ------------------------------------------------- */}
-        <AnimatedButton
-          text="View All Best Sellers"
-          url="/products/bestseller"
-        />
+        <AnimatedButton text="View All Best Sellers" />
       </>
     )
   );

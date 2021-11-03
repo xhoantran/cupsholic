@@ -63,10 +63,10 @@ const AttractButton = styled.a`
   overflow-wrap: break-word;
 `;
 
-const AnimatedButton = ({ text, url, alignLeft }) => (
+const AnimatedButton = ({ text, alignLeft }) => (
   <AttractButtonWrapper alignLeft={alignLeft}>
     <AttractButtonContainer>
-      <Link href={url}>
+      <Link href="/shop">
         <AttractButton>{text}</AttractButton>
       </Link>
     </AttractButtonContainer>

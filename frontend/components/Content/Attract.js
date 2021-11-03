@@ -150,7 +150,7 @@ const Attract = () => {
         </ContentAttractTextDescript>
         {/* ------------------------------------------------ */}
         <div style={{ height: "20px" }} aria-hidden={true}></div>
-        <AnimatedButton url="/products" text="See All Product" />
+        <AnimatedButton text="See All Product" />
       </ContentAttractTextContainer>
     </ContentAttract>
   );
