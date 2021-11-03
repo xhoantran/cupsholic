@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ArrowUp from "./Icon/ArrowUp";
+import ArrowUp from "../Icon/ArrowUp";
 import { useState, useEffect } from "react";
 
 const Container = styled.a`

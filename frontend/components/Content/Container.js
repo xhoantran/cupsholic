@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { BPSmall } from "../BreakPoint";
-const ContentWrapper = styled.div`
+
+export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
   background: #fff;
-  min-height: 0;
 `;
 const ContentContainerRow = styled.div`
   max-width: 84.375rem;
@@ -29,13 +29,11 @@ const ContentContainerColumn = styled.div`
 
 function Content(props) {
   return (
-    <ContentWrapper>
-      <div>
-        <ContentContainerRow>
-          <ContentContainerColumn>{props.children}</ContentContainerColumn>
-        </ContentContainerRow>
-      </div>
-    </ContentWrapper>
+    <>
+      <ContentContainerRow>
+        <ContentContainerColumn>{props.children}</ContentContainerColumn>
+      </ContentContainerRow>
+    </>
   );
 }
 

@@ -1,9 +1,7 @@
 import Head from "next/head";
-import Attract from "../components/Content/Attract";
-import BestSellers from "../components/Content/BestSellers";
-import ContentContainer from "../components/Content/Container";
-import LimitSale from "../components/Content/LimitSales";
-import NewArrivals from "../components/Content/NewArrivals";
+import ContentContainer, {
+  ContentWrapper,
+} from "../components/Content/Container";
 import Footer from "../components/Layout/Footer";
 import Header from "../components/Layout/Header";
 import Subheader from "../components/Layout/Subheader";
@@ -19,7 +17,6 @@ export default function Account() {
   }
   function handleCloseMenu() {
     setIsOpenMenu(false);
-    console.log("closeee");
   }
   return (
     <>
@@ -31,9 +28,11 @@ export default function Account() {
       <Wrapper>
         <Subheader />
         <Header onOpenMenu={handleOpenMenu} />
-        <ContentContainer>
-          <LoginAndSignup />
-        </ContentContainer>
+        <ContentWrapper>
+          <ContentContainer>
+            <LoginAndSignup />
+          </ContentContainer>
+        </ContentWrapper>
         <Footer />
         <OverlayContainer isOpenMenu={isOpenMenu} onClose={handleCloseMenu} />
       </Wrapper>

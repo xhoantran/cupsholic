@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { BPLarge, BPMedium, BPSmall } from "./BreakPoint";
+import { BPMedium } from "./BreakPoint";
 
 const ProductGridItem = styled.li`
   font-size: 0.75rem;
