@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import AnimatedButton from "../AnimatedButton";
 import Gap from "../Gap";
@@ -14,24 +12,9 @@ const TitleDecription = styled.p`
   text-align: center;
 `;
 
-const BestSellers = () => {
-  const [bestSellers, setBestSellers] = useState({
-    products: [],
-    numsItem: 0,
-  });
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/products/?bestseller=true")
-      .then((response) => {
-        setBestSellers({
-          products: response.data.results,
-          numsItem: response.data.count,
-        });
-      });
-  }, []);
-
+const BestSellers = ({ bestSellers, numsItem }) => {
   return (
-    bestSellers.numsItem !== 0 && (
+    numsItem !== 0 && (
       <>
         <SessionHeader fontSize="30px">Best Sellers</SessionHeader>
         <Gap height="5px" />
@@ -46,12 +29,8 @@ const BestSellers = () => {
         {/* ------------------------------------------------- */}
         <ProductWrapper>
           <ProductGridContainer>
-            {bestSellers.products.map((product) => (
-              <Product
-                key={product.id}
-                data={product}
-                numsItem={bestSellers.numsItem}
-              />
+            {bestSellers.map((product) => (
+              <Product key={product.id} data={product} numsItem={numsItem} />
             ))}
           </ProductGridContainer>
         </ProductWrapper>

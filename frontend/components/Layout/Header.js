@@ -349,7 +349,7 @@ const Header = ({ onOpenMenu }) => {
                     <HeaderNavigationItem>
                       <Link href="/shop/">
                         <HeaderNavigationItemLink
-                          className={asPath === "/shop/" ? "active" : null}
+                          className={asPath === "/shop" ? "active" : null}
                         >
                           <ShopLetterAnimate style={{ "--i": 1 }}>
                             S
@@ -371,21 +371,21 @@ const Header = ({ onOpenMenu }) => {
                     </HeaderNavigationItem>
                     <HeaderNavigationItem>
                       <HeaderNavigationItemLink
-                        className={asPath === "/blog/" ? "active" : null}
+                        className={asPath === "/blog" ? "active" : null}
                       >
                         Blog
                       </HeaderNavigationItemLink>
                     </HeaderNavigationItem>
                     <HeaderNavigationItem>
                       <HeaderNavigationItemLink
-                        className={asPath === "/about/" ? "active" : null}
+                        className={asPath === "/about" ? "active" : null}
                       >
                         About
                       </HeaderNavigationItemLink>
                     </HeaderNavigationItem>
                     <HeaderNavigationItem>
                       <HeaderNavigationItemLink
-                        className={asPath === "/contact/" ? "active" : null}
+                        className={asPath === "/contact" ? "active" : null}
                       >
                         Contact
                       </HeaderNavigationItemLink>

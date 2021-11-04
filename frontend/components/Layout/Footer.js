@@ -6,6 +6,8 @@ const FooterWrapper = styled.footer`
   border-top: 1px solid #000;
   padding: 45px 0;
 
+  margin-top: 60px;
+
   @media (min-width: ${BPSmall}) {
     padding: 60px 0;
   }

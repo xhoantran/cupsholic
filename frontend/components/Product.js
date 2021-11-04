@@ -114,6 +114,11 @@ const AddToCartButton = styled.a`
   line-height: 28px;
   padding: 0 14px;
   text-transform: uppercase;
+
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
 `;
 
 const Product = ({ data, numsItem }) => {
@@ -146,7 +151,9 @@ const Product = ({ data, numsItem }) => {
             <ProductAmount>{price}</ProductAmount>
           </ProductPrice>
           <AddToCartContainer>
-            <AddToCartButton>Add to cart</AddToCartButton>
+            <AddToCartButton className="transition-cubic-bezier">
+              Add to cart
+            </AddToCartButton>
           </AddToCartContainer>
         </ProductInnerContent>
       </ProductContainer>

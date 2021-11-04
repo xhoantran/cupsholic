@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import SessionHeader from "../SessionHeader";
 import Gap from "../Gap";
 import {
@@ -8,36 +6,17 @@ import {
 } from "../Layout/ProductGridContainer";
 import Product from "../Product";
 
-const NewArrival = () => {
-  const [newArrival, setNewArrival] = useState({
-    products: [],
-    numsItem: 0,
-  });
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/products/?newarrival=true")
-      .then((response) => {
-        setNewArrival({
-          products: response.data.results,
-          numsItem: response.data.count,
-        });
-      });
-  }, []);
-
+const NewArrival = ({ newArrival, numsItem }) => {
   return (
-    newArrival.numsItem !== 0 && (
+    numsItem !== 0 && (
       <>
         <SessionHeader fontSize="30px">New Arrivals</SessionHeader>
         <Gap height="20px" />
         {/* ------------------------------------------------- */}
         <ProductWrapper>
           <ProductGridContainer>
-            {newArrival.products.map((product) => (
-              <Product
-                key={product.id}
-                data={product}
-                numsItem={newArrival.numsItem}
-              />
+            {newArrival.map((product) => (
+              <Product key={product.id} data={product} numsItem={numsItem} />
             ))}
           </ProductGridContainer>
         </ProductWrapper>

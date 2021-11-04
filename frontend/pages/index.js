@@ -16,7 +16,10 @@ import ScrollToTop from "../components/Layout/ScrollToTop";
 import Subheader from "../components/Layout/Subheader";
 import Wrapper from "../components/Layout/Wrapper";
 
-export default function Home() {
+export default function Home({ bestSellersProps, newArrivalProps }) {
+  const { bestSellers, bestSellersItem } = bestSellersProps;
+  console.log(newArrivalProps);
+  const { newArrival, newArrivalItem } = newArrivalProps;
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   function handleOpenMenu() {
     setIsOpenMenu(true);
@@ -41,11 +44,11 @@ export default function Home() {
           <ContentContainer>
             <Attract />
             <Gap height="50px" />
-            <BestSellers />
+            <BestSellers bestSellers={bestSellers} numsItem={bestSellersItem} />
             <Gap height="50px" />
             <LimitSale />
             <Gap height="45px" />
-            <NewArrivals />
+            <NewArrivals newArrival={newArrival} numsItem={newArrivalItem} />
             {/* <NewBlog /> */}
           </ContentContainer>
         </ContentWrapper>
@@ -55,4 +58,39 @@ export default function Home() {
       </Wrapper>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const bestSellers = await fetch(
+    `http://localhost:8000/api/products/?bestseller=true`
+  );
+  const bestSellersData = await bestSellers.json();
+  if (!bestSellersData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const newArrival = await fetch(
+    `http://localhost:8000/api/products/?bestseller=true`
+  );
+  const newArrivalData = await newArrival.json();
+  if (!newArrivalData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      bestSellersProps: {
+        bestSellers: bestSellersData.results,
+        bestSellersItem: bestSellersData.count,
+      },
+      newArrivalProps: {
+        newArrival: newArrivalData.results,
+        newArrivalItem: newArrivalData.count,
+      },
+    },
+  };
 }
