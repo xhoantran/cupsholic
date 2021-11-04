@@ -1,4 +1,4 @@
-import SessionHeader from "../SessionHeader";
+import SessionHeader from "./SessionHeader";
 import Gap from "../Gap";
 import {
   ProductGridContainer,

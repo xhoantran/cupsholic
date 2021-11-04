@@ -1,10 +1,9 @@
 import Image from "next/image";
 import styled from "styled-components";
-import ArrowDownIcon from "../Icon/ArrowDown";
 import FitlerIcon from "../Icon/Filter";
 import { BPMedium } from "../Layout/BreakPoint";
 
-export const ProductWrapper = styled.div`
+const ProductWrapper = styled.div`
   max-width: 100%;
   width: 100%;
 
@@ -12,12 +11,25 @@ export const ProductWrapper = styled.div`
     max-width: 990px;
   }
 `;
-export const ProductContainer = styled.div`
+const ProductContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
   background: #fff;
 `;
+
+export const ShopRightSidebarContainer = (props) => {
+  return (
+    <>
+      <ProductWrapper>
+        <div>
+          <ProductContainer>{props.children}</ProductContainer>
+        </div>
+      </ProductWrapper>
+    </>
+  );
+};
+
 const ContentTitle = styled.h1`
   font-family: Jost;
   line-height: 1;
@@ -76,6 +88,10 @@ const ContentFilterLink = styled.a`
   font-size: 14px;
   font-weight: 500;
 
+  &:hover {
+    color: #fecdab;
+  }
+
   & > svg {
     margin-right: 5px;
   }
@@ -100,14 +116,9 @@ const ContentSortingSelect = styled.select`
   font-weight: 400;
   background: #fff
     url(https://33esog1b5uudrsor3485evx1-wpengine.netdna-ssl.com/wp-content/themes/overline/assets/img/select_arrow.png)
-    calc(100% - 15px) 20px no-repeat;
+    calc(100% - 15px) 5px no-repeat;
   background-size: 7px 4px;
   position: relative;
-`;
-const ArrowDownIconWrapper = styled.div`
-  margin-left: 5px;
-  padding-bottom: 4px;
-  cursor: pointer;
 `;
 const ProductList = styled.ul`
   border-top: 1px solid transparent;
@@ -289,7 +300,7 @@ const Product = ({ products }) => {
       <ContentFilter>
         <ContentFilterRow>
           <ContentFilterCol1>
-            <ContentFilterLink>
+            <ContentFilterLink className="transition-cubic-bezier">
               <FitlerIcon /> Filter
             </ContentFilterLink>
           </ContentFilterCol1>
@@ -301,9 +312,6 @@ const Product = ({ products }) => {
                 <option value="">Sort by price: low to high</option>
                 <option value="">Sort by price: high to low</option>
               </ContentSortingSelect>
-              <ArrowDownIconWrapper>
-                <ArrowDownIcon />
-              </ArrowDownIconWrapper>
             </ContentSorting>
           </ContentFilterCol2>
         </ContentFilterRow>

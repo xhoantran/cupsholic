@@ -1,4 +1,4 @@
-import SessionHeader from "../SessionHeader";
+import SessionHeader from "./SessionHeader";
 import styled from "styled-components";
 import HorizontalLine from "../HorizontalLine";
 import Gap from "../Gap";

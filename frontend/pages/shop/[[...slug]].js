@@ -12,8 +12,7 @@ import BreadCrumb from "../../components/Layout/BreadCrumb";
 import ShopContainer from "../../components/Shop/Container";
 import ShopSidebar from "../../components/Shop/Sidebar";
 import ShopProduct, {
-  ProductWrapper,
-  ProductContainer,
+  ShopRightSidebarContainer,
 } from "../../components/Shop/Product";
 import Pagination from "../../components/Shop/Pagination";
 
@@ -40,14 +39,10 @@ const Shop = ({ productsProps }) => {
           <ContentContainer>
             <ShopContainer>
               <ShopSidebar />
-              <ProductWrapper>
-                <div>
-                  <ProductContainer>
-                    <ShopProduct products={products} numsItem={numsItem} />
-                    <Pagination numsItem={numsItem} currentPage={currentPage} />
-                  </ProductContainer>
-                </div>
-              </ProductWrapper>
+              <ShopRightSidebarContainer>
+                <ShopProduct products={products} numsItem={numsItem} />
+                <Pagination numsItem={numsItem} currentPage={currentPage} />
+              </ShopRightSidebarContainer>
             </ShopContainer>
           </ContentContainer>
         </ContentWrapper>

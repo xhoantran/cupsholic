@@ -6,7 +6,7 @@ import {
   ProductWrapper,
 } from "../Layout/ProductGridContainer";
 import Product from "../Product";
-import SessionHeader from "../SessionHeader";
+import SessionHeader from "./SessionHeader";
 
 const TitleDecription = styled.p`
   text-align: center;
