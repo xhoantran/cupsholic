@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import { BPMedium } from "../Layout/BreakPoint";
+import { useRouter } from "next/router";
 
 const SidebarWidgetItem = styled.li`
   margin-bottom: 5px;
 `;
 const SidebarWidgetItemLink = styled.a`
   color: #000;
+  &:hover {
+    color: #eb9a72;
+  }
 `;
 const SidebarWidgetContainer = styled.div`
   margin-bottom: 25px;
@@ -13,7 +17,6 @@ const SidebarWidgetContainer = styled.div`
   font-size: 14px;
   border-bottom: 1px solid #eee;
 `;
-
 const SidebarWidgetTitle = styled.div`
   font-weight: 600;
   font-size: 14px;
@@ -24,7 +27,6 @@ const SidebarWidgetTitle = styled.div`
 const SidebarWidgetList = styled.ul`
   list-style: none;
 `;
-
 const ItemFilterContainer = styled.li`
   margin-bottom: 5px;
   display: flex;
@@ -51,57 +53,43 @@ const ItemFilterFillterLink = styled.a`
     color: #fff;
   }
 
+  &:hover::before,
   &.chosen::before {
     box-shadow: inset 0 0 0 1px;
     background: #000;
   }
 `;
-
 const SidebarLastWidgetContainer = styled.div`
   margin-bottom: 25px;
   font-size: 14px;
   border-bottom: 0;
 `;
 
-const CategoryFilter = () => {
+const CategoryFilter = ({ categories }) => {
   return (
     <SidebarWidgetContainer>
       <SidebarWidgetTitle>Categories</SidebarWidgetTitle>
       <SidebarWidgetList>
-        <SidebarWidgetItem>
-          <SidebarWidgetItemLink>Whine Cup</SidebarWidgetItemLink>
-        </SidebarWidgetItem>
-        <SidebarWidgetItem>
-          <SidebarWidgetItemLink>Cute Cup</SidebarWidgetItemLink>
-        </SidebarWidgetItem>
-        <SidebarWidgetItem>
-          <SidebarWidgetItemLink>Coffee Cup</SidebarWidgetItemLink>
-        </SidebarWidgetItem>
-        <SidebarWidgetItem>
-          <SidebarWidgetItemLink>Random Cup</SidebarWidgetItemLink>
-        </SidebarWidgetItem>
-        <SidebarWidgetItem>
-          <SidebarWidgetItemLink>Whine Cup</SidebarWidgetItemLink>
-        </SidebarWidgetItem>
+        {categories.map((category, index) => (
+          <SidebarWidgetItem key={index}>
+            <SidebarWidgetItemLink>{category.name}</SidebarWidgetItemLink>
+          </SidebarWidgetItem>
+        ))}
       </SidebarWidgetList>
     </SidebarWidgetContainer>
   );
 };
 
-const ColorFilter = () => {
+const ColorFilter = ({ colors }) => {
   return (
     <SidebarWidgetContainer>
       <SidebarWidgetTitle>Fillter by Color</SidebarWidgetTitle>
       <SidebarWidgetList>
-        <ItemFilterContainer>
-          <ItemFilterFillterLink>Black</ItemFilterFillterLink>
-        </ItemFilterContainer>
-        <ItemFilterContainer>
-          <ItemFilterFillterLink>Red</ItemFilterFillterLink>
-        </ItemFilterContainer>
-        <ItemFilterContainer>
-          <ItemFilterFillterLink>Blue</ItemFilterFillterLink>
-        </ItemFilterContainer>
+        {colors.map((color, index) => (
+          <ItemFilterContainer key={index}>
+            <ItemFilterFillterLink>{color.name}</ItemFilterFillterLink>
+          </ItemFilterContainer>
+        ))}
       </SidebarWidgetList>
     </SidebarWidgetContainer>
   );
@@ -149,13 +137,14 @@ const SideBarContainer = styled.div`
   }
 `;
 
-const Sidebar = () => {
+const Sidebar = ({ filterProps }) => {
+  const { categories, colors } = filterProps;
   return (
     <>
       <SidebarWrapper>
         <SideBarContainer>
-          <CategoryFilter />
-          <ColorFilter />
+          <CategoryFilter categories={categories} />
+          <ColorFilter colors={colors} />
           <SizeFilter />
         </SideBarContainer>
       </SidebarWrapper>

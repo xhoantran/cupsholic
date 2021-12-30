@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ArrowRight from "../Icon/ArrowRight";
 import ArrowLeft from "../Icon/ArrowLeft";
 import Link from "next/link";
-
+import { useRouter } from "next/router";
 const PreviousPageLink = styled.a`
   left: 0;
   position: absolute;
@@ -129,12 +129,17 @@ function pagination(current, total) {
 const ShopPagination = ({ numsItem, currentPage, itemPerPage = 9 }) => {
   const totalPages = Math.ceil(numsItem / itemPerPage);
   const pageArr = pagination(currentPage, totalPages);
-  console.log(pageArr);
+  const router = useRouter();
   return (
     <>
       <PaginationWrapper>
         {currentPage > 1 && (
-          <PreviousButton href={`/shop/page/${currentPage - 1}`} />
+          <PreviousButton
+            href={{
+              pathname: "/shop/",
+              query: { ...router.query, page: currentPage - 1 },
+            }}
+          />
         )}
         <>
           {pageArr.map((page) =>
@@ -143,14 +148,24 @@ const ShopPagination = ({ numsItem, currentPage, itemPerPage = 9 }) => {
             ) : page === currentPage ? (
               <CurrentPage key={page}>{page}</CurrentPage>
             ) : (
-              <PageNumber key={page} href={`/shop/page/${page}`}>
-                {page}
-              </PageNumber>
+              <Link
+                href={{
+                  pathname: "/shop/",
+                  query: { ...router.query, page: page },
+                }}
+              >
+                <PageNumber key={page}>{page}</PageNumber>
+              </Link>
             )
           )}
         </>
         {currentPage < totalPages && (
-          <NextButton href={`/shop/page/${currentPage + 1}`} />
+          <NextButton
+            href={{
+              pathname: "/shop/",
+              query: { ...router.query, page: currentPage + 1 },
+            }}
+          />
         )}
       </PaginationWrapper>
     </>

@@ -26,13 +26,13 @@ class ProductList(generics.ListCreateAPIView):
         queryset = Product.objects.all()
         category = self.request.query_params.get("category")
         if category:
-            queryset = queryset.filter(category__name=category)
+            queryset = queryset.filter(category__name__icontains=category)
         tag = self.request.query_params.get("tag")
         if tag:
-            queryset = queryset.filter(tag__name=tag)
+            queryset = queryset.filter(tag__name__icontains=tag)
         color = self.request.query_params.get("color")
         if color:
-            queryset = queryset.filter(color__name=color)
+            queryset = queryset.filter(color__name__icontains=color)
         bestseller = self.request.query_params.get("bestseller")
         if bestseller:
             queryset = queryset.filter(bestseller=True)

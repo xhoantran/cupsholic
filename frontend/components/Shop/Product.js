@@ -100,7 +100,7 @@ const ContentSorting = styled.form`
   display: inline-flex;
 `;
 const ContentSortingSelect = styled.select`
-  padding: 0 10px 0 0;
+  padding: 0 15px 0 0;
   border: 0;
   margin: 0;
   height: 16px;
@@ -116,7 +116,7 @@ const ContentSortingSelect = styled.select`
   font-weight: 400;
   background: #fff
     url(https://33esog1b5uudrsor3485evx1-wpengine.netdna-ssl.com/wp-content/themes/overline/assets/img/select_arrow.png)
-    calc(100% - 15px) 5px no-repeat;
+    calc(100% - 5px) 5px no-repeat;
   background-size: 7px 4px;
   position: relative;
 `;
@@ -285,7 +285,7 @@ const ProductInnerWrapper = ({ data }) => {
   );
 };
 
-const Product = ({ products }) => {
+const Product = ({ products, onOpenFilter }) => {
   return (
     <>
       <header>
@@ -300,7 +300,10 @@ const Product = ({ products }) => {
       <ContentFilter>
         <ContentFilterRow>
           <ContentFilterCol1>
-            <ContentFilterLink className="transition-cubic-bezier">
+            <ContentFilterLink
+              className="transition-cubic-bezier"
+              onClick={onOpenFilter}
+            >
               <FitlerIcon /> Filter
             </ContentFilterLink>
           </ContentFilterCol1>
@@ -308,9 +311,9 @@ const Product = ({ products }) => {
             <ContentSorting>
               <ContentSortingSelect>
                 <option value="">Default sort</option>
-                <option value="">Sort by popularity</option>
-                <option value="">Sort by price: low to high</option>
-                <option value="">Sort by price: high to low</option>
+                <option value="">By popularity</option>
+                <option value="">By price: low to high</option>
+                <option value="">By price: high to low</option>
               </ContentSortingSelect>
             </ContentSorting>
           </ContentFilterCol2>

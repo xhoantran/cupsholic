@@ -219,6 +219,19 @@ const MobileMenu = ({ isOpen, onClose }) => {
   );
 };
 
+const FilterMenuPanel = ({ isOpen, onClose }) => {
+  return (
+    <>
+      <MobileMenuContainer className={isOpen ? "active" : null}>
+        <MobileMenuHeader onClick={onClose}>
+          <MobileMenuClose>Close</MobileMenuClose>
+        </MobileMenuHeader>
+        <MobileMenuInner></MobileMenuInner>
+      </MobileMenuContainer>
+    </>
+  );
+};
+
 const ClickCapture = styled.div`
   background-image: radial-gradient(
     circle at center,
@@ -235,7 +248,7 @@ const ClickCapture = styled.div`
   transision-delay: 0.1s;
 `;
 
-const OverlayContainer = ({ isOpenMenu, onClose }) => {
+const OverlayContainer = ({ isOpenMenu, onClose, isOpenFilter }) => {
   const [ClickCaptureStyle, setClickCaptureStyle] = useState({
     opacity: 0,
     visibility: "hidden",
@@ -243,7 +256,7 @@ const OverlayContainer = ({ isOpenMenu, onClose }) => {
   });
 
   useEffect(() => {
-    if (isOpenMenu) {
+    if (isOpenMenu || isOpenFilter) {
       setClickCaptureStyle({
         opacity: 1,
         visibility: "visible",
@@ -260,7 +273,7 @@ const OverlayContainer = ({ isOpenMenu, onClose }) => {
         });
       }, 400);
     }
-  }, [isOpenMenu]);
+  }, [isOpenMenu, isOpenFilter]);
 
   return (
     <>
@@ -273,6 +286,9 @@ const OverlayContainer = ({ isOpenMenu, onClose }) => {
         }}
       />
       <MobileMenu isOpen={isOpenMenu} onClose={onClose} />
+      {isOpenFilter !== null && (
+        <FilterMenuPanel isOpen={isOpenFilter} onClose={onClose} />
+      )}
     </>
   );
 };

@@ -1,10 +1,9 @@
 from django.db import models
 from apiauth.models import CustomUser
-from .fields import LowerCaseCharField
 
 
 class Category(models.Model):
-    name = LowerCaseCharField(max_length=255)
+    name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='category-image/', blank=True, null=True)
 
     def __str__(self):
@@ -15,7 +14,7 @@ class Category(models.Model):
 
 
 class Color(models.Model):
-    name = LowerCaseCharField(max_length=255)
+    name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
@@ -25,7 +24,7 @@ class Color(models.Model):
 
 
 class Size(models.Model):
-    name = LowerCaseCharField(max_length=255)
+    name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
@@ -35,7 +34,7 @@ class Size(models.Model):
 
 
 class Tag(models.Model):
-    name = LowerCaseCharField(max_length=255)
+    name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name

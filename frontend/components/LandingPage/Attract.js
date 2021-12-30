@@ -23,7 +23,7 @@ const ContentAttract = styled.div`
 const ContentAttractFigure = styled.figure`
   align-self: center;
   grid-column: 2;
-  grid-row: 1 /*!rtl:end:ignore*/;
+  grid-row: 1;
   height: 100%;
   min-height: 250px;
   background-size: cover;
@@ -40,7 +40,7 @@ const ContentAttractTextContainer = styled.div`
   word-break: break-word;
   padding: 14%;
   grid-column: 1;
-  grid-row: 1 /*!rtl:end:ignore*/;
+  grid-row: 1;
 
   @media (max-width: 600px) {
     grid-column: 1;

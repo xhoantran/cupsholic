@@ -12,20 +12,6 @@ services:
     env_file:
       - .env.staging
 
-  # React
-  # frontend:
-  #   container_name: cupsholic_dev_react_server
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker_compose/node/development/Dockerfile
-  #   ports:
-  #     - "3000:3000"
-  #   expose:
-  #     - "3000"
-  #   volumes:
-  #     - ./frontend:/usr/src/app
-  #   command: yarn dev
-
   # Django App
   backend:
     container_name: cupsholic_dev_django_server
